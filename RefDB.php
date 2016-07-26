@@ -40,3 +40,4 @@
 	add_action('user_register',														array('Referierende_Control', 'createMeta'));
 	
 	add_shortcode('ref_view',														array('ViewControl', 'maskHandler'));
+	add_shortcode('ref_stat',														array('ViewControl', 'showQuote'));

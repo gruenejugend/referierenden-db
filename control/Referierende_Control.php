@@ -176,6 +176,21 @@ class Referierende_Control {
 		return $users->get_total();
 	}
 	
+	public static function getGenderFITRegisted() {
+		$users = new WP_User_Query(array(
+			'meta_query'	=> array(
+				'relation'	=> 'AND',
+				array(
+					'key'			=> 'ref_gender',
+					'value'			=> 'true',
+					'compare'		=> '=='
+				)
+			)
+		));
+		
+		return $users->get_total();
+	}
+	
 	public static function getGenderNFIT() {
 		$users = new WP_User_Query(array(
 			'meta_query'	=> array(
@@ -186,6 +201,50 @@ class Referierende_Control {
 				),
 				array(
 					'key'			=> 'ref_aktiviert',
+					'value'			=> 'true',
+					'compare'		=> '=='
+				)
+			)
+		));
+		
+		return $users->get_total();
+	}
+	
+	public static function getGenderNFITRegisted() {
+		$users = new WP_User_Query(array(
+			'meta_query'	=> array(
+				array(
+					'key'			=> 'ref_gender',
+					'value'			=> 'false',
+					'compare'		=> '=='
+				)
+			)
+		));
+		
+		return $users->get_total();
+	}
+	
+	public static function getGenderNFITActivated() {
+		$users = new WP_User_Query(array(
+			'meta_query'	=> array(
+				'relation'	=> 'AND',
+				array(
+					'key'			=> 'ref_gender',
+					'value'			=> 'false',
+					'compare'		=> '=='
+				),
+				array(
+					'key'			=> 'ref_aktiviert',
+					'value'			=> 'false',
+					'compare'		=> '=='
+				),
+				array(
+					'key'			=> 'ref_freigabe_selbst',
+					'value'			=> 'true',
+					'compare'		=> '=='
+				),
+				array(
+					'key'			=> 'ref_freigabe_admin',
 					'value'			=> 'true',
 					'compare'		=> '=='
 				)

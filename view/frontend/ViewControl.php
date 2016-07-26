@@ -150,4 +150,66 @@ class ViewControl {
 		}
 		return $error;
 	}
+	
+	public static function showQuote() {
+		$fitZugelassen = Referierende_Control::getGenderFIT();
+		$nfitZugelassen = Referierende_Control::getGenderNFIT();
+		
+		$gesamtZugelassen = $fitZugelassen + $nfitZugelassen;
+		$fitZugelassenProzent = round($fitZugelassen / $gesamtZugelassen,2);
+		$nfitZugelassenProzent = round($nfitZugelassen / $gesamtZugelassen,2);
+		
+		$fitRegistriert = Referierende_Control::getGenderFITRegisted();
+		$nfitRegistriert = Referierende_Control::getGenderNFITRegisted();
+		
+		$gesamtRegistriert = $fitRegistriert + $nfitRegistriert;
+		$fitRegistriertProzent = round($fitRegistriert / $gesamtRegistriert,2);
+		$nfitRegistriertProzent = round($nfitRegistriert / $gesamtRegistriert,2);
+		
+		$nfitWarteschlange = Referierende_Control::getGenderNFITActivated();
+		
+		?>
+
+<b>Zugelassene Personen</b><br>
+<table border="0" cellpadding="0" cellspacing="5" width="100%">
+	<tr>
+		<td width="40%"></td>
+		<td width="30%"><b>FIT</b></td>
+		<td width="30%"><b>NFIT</b></td>
+	</tr>
+	<tr>
+		<td width="40%">Anzahl</td>
+		<td width="30%"><?php echo $fitZugelassen; ?></td>
+		<td width="30%"><?php echo $nfitZugelassen; ?></td>
+	</tr>
+	<tr>
+		<td width="40%">Anteil</td>
+		<td width="30%"><?php echo $fitZugelassenProzent; ?>%</td>
+		<td width="30%"><?php echo $nfitZugelassenProzent; ?>%</td>
+	</tr>
+</table><br><br>
+
+<b>Registrierte Personen</b><br>
+<table border="0" cellpadding="0" cellspacing="5" width="100%">
+	<tr>
+		<td width="40%"></td>
+		<td width="30%"><b>FIT</b></td>
+		<td width="30%"><b>NFIT</b></td>
+	</tr>
+	<tr>
+		<td width="40%">Anzahl</td>
+		<td width="30%"><?php echo $fitRegistriert; ?></td>
+		<td width="30%"><?php echo $nfitRegistriert; ?></td>
+	</tr>
+	<tr>
+		<td width="40%">Anteil</td>
+		<td width="30%"><?php echo $fitRegistriertProzent; ?>%</td>
+		<td width="30%"><?php echo $nfitRegistriertProzent; ?>%</td>
+	</tr>
+</table><br><br>
+
+<b>NFIT-Personen in Warteschlange: </b><?php echo $nfitWarteschlange; ?>
+
+		<?php
+	}
 }
