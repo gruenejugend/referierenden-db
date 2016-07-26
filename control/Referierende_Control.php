@@ -75,15 +75,6 @@ class Referierende_Control {
 		update_user_meta($id, "ref_freigabe_admin", 'false');
 		update_user_meta($id, "ref_freigabe_selbst", 'false');
 		update_user_meta($id, "ref_aktiviert", 'false');
-		
-		/*
-		 * TEST WORK ARROUND START
-		 */
-		self::freigabe($id);
-		
-		/*
-		 * TEST WORK ARROUND ENDE
-		 */
 	}
 	
 	public static function update($id, $key, $value) {
