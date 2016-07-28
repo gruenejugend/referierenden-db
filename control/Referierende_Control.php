@@ -140,10 +140,13 @@ class Referierende_Control {
 			update_user_meta($id, "ref_freigabe_selbst", 'true');
 
 			$referierende = new Referierende($id);
-			if($referierende->gender == 'true') {
+			if($referierende->gender == 'true' || ($referierende->gender == 'false' && !Referierende_Util::SETTING_QUOTE)) {
 				update_user_meta($id, "ref_aktiviert", 'true');
 			}
-			self::aktiviereNext();
+			
+			if(Referierende_Util::SETTING_QUOTE) {
+				self::aktiviereNext();
+			}
 		}
 	}
 	
@@ -444,11 +447,15 @@ class Referierende_Control {
 		}
 		
 		$values = array();
-		for($i = 0; $i < count($fit); $i++) {
-			$values[] = $fit[$i];
-			if(isset($nfit[$i])) {
-				$values[] = $nfit[$i];
+		if(Referierende_Util::SETTING_QUOTE) {
+			for($i = 0; $i < count($fit); $i++) {
+				$values[] = $fit[$i];
+				if(isset($nfit[$i])) {
+					$values[] = $nfit[$i];
+				}
 			}
+		} else {
+			$values = array_merge($fit, $nfit);
 		}
 		
 		return $values;

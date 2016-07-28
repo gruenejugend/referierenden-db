@@ -20,6 +20,8 @@
 	
 	require_once 'functions.php';
 	
+	require_once 'services/util/Referierende_Util.php';
+	
 	require_once 'model/Referierende.php';
 	require_once 'control/Referierende_Control.php';
 	require_once 'model/Referenz.php';
