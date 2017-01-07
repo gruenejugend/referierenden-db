@@ -48,7 +48,7 @@
 	<tr>
 		<td colspan="3"><b>Beschreibung:</b><br>
 		
-			<?php echo $referierende->description; ?>
+			<?php echo wpautop($referierende->description); ?>
 			<br><br>
 		
 		</td>
